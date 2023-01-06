@@ -74,7 +74,7 @@ className='w-[15px] h-[15px] object-contain' />
             <CustomButton 
               btnType="button"
               title={address ? 'Create a campaign' : 'Connect'}
-              styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+              styles={address ? 'bg-[#376CFF]' : 'bg-[#376CFF]'}
               handleClick={() => {
                 if(address) navigate('create-campaign')
                 else connect();

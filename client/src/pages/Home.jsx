@@ -1,22 +1,32 @@
-export const daysLeft = (deadline) => {
-  const difference = new Date(deadline).getTime() - Date.now();
-  const remainingDays = difference / (1000 * 3600 * 24);
+import React, { useState, useEffect } from 'react'
 
-  return remainingDays.toFixed(0);
-};
+import { DisplayCampaigns } from '../components';
+import { useStateContext } from '../context'
 
-export const calculateBarPercentage = (goal, raisedAmount) => {
-  const percentage = Math.round((raisedAmount * 100) / goal);
+const Home = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [campaigns, setCampaigns] = useState([]);
 
-  return percentage;
-};
+  const { address, contract, getCampaigns } = useStateContext();
 
-export const checkIfImage = (url, callback) => {
-  const img = new Image();
-  img.src = url;
+  const fetchCampaigns = async () => {
+    setIsLoading(true);
+    const data = await getCampaigns();
+    setCampaigns(data);
+    setIsLoading(false);
+  }
 
-  if (img.complete) callback(true);
+  useEffect(() => {
+    if(contract) fetchCampaigns();
+  }, [address, contract]);
 
-  img.onload = () => callback(true);
-  img.onerror = () => callback(false);
-};
+  return (
+    <DisplayCampaigns 
+      title="All Campaigns"
+      isLoading={isLoading}
+      campaigns={campaigns}
+    />
+  )
+}
+
+export default Home
