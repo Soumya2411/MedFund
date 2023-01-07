@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-contract MedFund {
+contract CrowdFunding {
     struct Campaign {
         address owner;
         string title;
@@ -14,7 +14,7 @@ contract MedFund {
         uint256[] donations;
     }
 
-mapping(uint256 => Campaign) public campaigns;
+    mapping(uint256 => Campaign) public campaigns;
 
     uint256 public numberOfCampaigns = 0;
 
@@ -50,6 +50,7 @@ mapping(uint256 => Campaign) public campaigns;
             campaign.amountCollected = campaign.amountCollected + amount;
         }
     }
+
     function getDonators(uint256 _id) view public returns (address[] memory, uint256[] memory) {
         return (campaigns[_id].donators, campaigns[_id].donations);
     }
@@ -64,5 +65,5 @@ mapping(uint256 => Campaign) public campaigns;
         }
 
         return allCampaigns;
-   }
+    }
 }

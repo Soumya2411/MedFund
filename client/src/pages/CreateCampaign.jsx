@@ -41,6 +41,7 @@ const CreateCampaign = () => {
   }
 
   return (
+
     <div className="bg-[#FFFFFF] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4">
       {isLoading && <Loader />}
       <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#376CFF] rounded-[10px]">
@@ -72,6 +73,7 @@ const CreateCampaign = () => {
             value={form.description}
             handleChange={(e) => handleFormFieldChange('description', e)}
           />
+
 
         <div className="flex flex-wrap gap-[40px]">
           <FormField 
